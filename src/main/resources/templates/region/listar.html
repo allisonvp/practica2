@@ -4,12 +4,15 @@
         <meta charset="UTF-8">
         <title>Listar Regiones</title>
         <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+        <script rel="stylesheet" th:href="@{/js/bootstrap.min.js}"/>
     </head>
     <body class="container">
+        <div th:insert="fragments/fragmento.html :: barraSuperior"></div>
+
         <h2>Lista de Regiones</h2>
         <a class="btn btn-primary mt-4 mb-4" th:href="@{'/regions/create'}">Nueva Región</a>
 
-        <table>
+        <table class="table table-sm">
             <tr>
                 <th>#</th>
                 <th>Nombre de región</th>

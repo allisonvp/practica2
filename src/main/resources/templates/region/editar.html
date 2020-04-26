@@ -4,8 +4,10 @@
         <meta charset="UTF-8">
         <title>Editar Región</title>
         <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+        <script rel="stylesheet" th:href="@{/js/bootstrap.min.js}"/>
     </head>
     <body class="container">
+        <div th:insert="fragments/fragmento.html :: barraSuperior"></div>
         <h2>Editar Región</h2><hr />
 
         <form method="post" th:action="@{'/regions/save'}">
