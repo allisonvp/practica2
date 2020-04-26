@@ -1,5 +1,8 @@
 package com.example.practica2.Entity;
 
+import com.sun.istack.Nullable;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -12,14 +15,19 @@ public class Employee {
     @Id
     private String employee_id;
     private String first_name;
+    @Column(nullable = false)
     private String last_name;
+    @Column(nullable = false)
     private String email;
     private String phone_number;
+    @Column(nullable = false)
     private LocalDateTime hire_date;
+    @Column(nullable = false)
     private String job_id;
     private BigDecimal salary;
     private BigDecimal commission_pct;
     private String manager_id;
+    @Column(nullable = false)
     private int department_id;
 
     public String getEmployee_id() {
