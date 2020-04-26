@@ -3,6 +3,7 @@ package com.example.practica2.Controller;
 import com.example.practica2.Entity.Region;
 import com.example.practica2.Repository.RegionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,6 +35,13 @@ public class RegionController {
 
     @PostMapping("/save")
     public String guardarRegion(Region region) {
+        if (region.getRegionid()==0){
+            List<Region> listaRegion = regionRepository.findAll(Sort.by("regionid").descending());
+            Region region_mayorId = listaRegion.get(0);
+            int mayorId = region_mayorId.getRegionid();
+            region.setRegionid(mayorId + 1);
+        }
+
         regionRepository.save(region);
         return "redirect:/regions/list";
     }

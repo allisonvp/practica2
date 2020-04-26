@@ -4,14 +4,14 @@
         <meta charset="UTF-8">
         <title>Editar Región</title>
         <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
-        <script rel="stylesheet" th:href="@{/js/bootstrap.min.js}"/>
+        <script th:href="@{/js/bootstrap.min.js}"></script>
     </head>
     <body class="container">
         <div th:insert="fragments/fragmento.html :: barraSuperior"></div>
         <h2>Editar Región</h2><hr />
 
         <form method="post" th:action="@{'/regions/save'}">
-            <input th:value="${region.region_id}" name="region_id" type="hidden" >
+            <input th:value="${region.regionid}" name="regionid" type="hidden" >
             <div class="form-group">
                 <label for="region_name">Nombre de la región</label>
                 <input th:value="${region.region_name}" name="region_name" type="text" class="form-control" id="region_name">

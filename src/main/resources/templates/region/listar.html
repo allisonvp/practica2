@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <title>Listar Regiones</title>
         <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
-        <script rel="stylesheet" th:href="@{/js/bootstrap.min.js}"/>
+        <script th:href="@{/js/bootstrap.min.js}"></script>
     </head>
     <body class="container">
         <div th:insert="fragments/fragmento.html :: barraSuperior"></div>
@@ -22,8 +22,8 @@
             <tr th:each="region, i:${lista}">
                 <td th:text="${i.index +1}"></td>
                 <td th:text="${region.region_name}"></td>
-                <td><a class="btn btn-primary" th:href="@{'/regions/edit?id=' + ${region.region_id}}">Editar</a></td>
-                <td><a class="btn btn-danger" th:href="@{'/regions/delete?id=' + ${region.region_id}}">Borrar</a></td>
+                <td><a class="btn btn-primary" th:href="@{'/regions/edit?id=' + ${region.regionid}}">Editar</a></td>
+                <td><a class="btn btn-danger" th:href="@{'/regions/delete?id=' + ${region.regionid}}">Borrar</a></td>
             </tr>
         </table>
         

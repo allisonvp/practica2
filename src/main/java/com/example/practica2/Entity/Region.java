@@ -7,16 +7,18 @@ import javax.persistence.*;
 public class Region {
 
     @Id
-    private int region_id;
+    @Column(name="region_id")
+    private int regionid;
+
     private String region_name;
 
 
-    public int getRegion_id() {
-        return region_id;
+    public int getRegionid() {
+        return regionid;
     }
 
-    public void setRegion_id(int region_id) {
-        this.region_id = region_id;
+    public void setRegionid(int region_id) {
+        this.regionid = region_id;
     }
 
     public String getRegion_name() {
