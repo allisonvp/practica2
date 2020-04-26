@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Listar Regiones</title>
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    </head>
+    <body class="container">
+        <h2>Lista de Regiones</h2>
+        <a class="btn btn-primary mt-4 mb-4" th:href="@{'/regions/create'}">Nueva Región</a>
+
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Nombre de región</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr th:each="region, i:${lista}">
+                <td th:text="${i.index +1}"></td>
+                <td th:text="${region.region_name}"></td>
+                <td><a class="btn btn-primary" th:href="@{'/regions/edit?id=' + ${region.region_id}}">Editar</a></td>
+                <td><a class="btn btn-danger" th:href="@{'/regions/delete?id=' + ${region.region_id}}">Borrar</a></td>
+            </tr>
+        </table>
+        
+    </body>
+</html>
