@@ -7,7 +7,6 @@ import javax.persistence.*;
 public class Region {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int region_id;
     private String region_name;
 

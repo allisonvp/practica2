@@ -8,14 +8,14 @@
     <body class="container">
         <h2>Editar Región</h2><hr />
 
-        <form method="post" th:action="${'/regions/save'}">
+        <form method="post" th:action="@{'/regions/save'}">
             <input th:value="${region.region_id}" name="region_id" type="hidden" >
             <div class="form-group">
                 <label for="region_name">Nombre de la región</label>
                 <input th:value="${region.region_name}" name="region_name" type="text" class="form-control" id="region_name">
             </div>
 
-            <a th:href="${'/regions/list'}" class="btn btn-danger">Cancelar</a>
+            <a th:href="@{'/regions/list'}" class="btn btn-danger">Cancelar</a>
             <button type="submit" class="btn btn-primary">Registrar</button>
         </form>
         
