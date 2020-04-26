@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
-        <title>Title</title>
+        <title>Index</title>
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
     </head>
     <body>
+        <h2>Gestión HR-SW2</h2>
+        <a th:href="${'/regions/list'}" class="btn btn-primary">Lista de regiones</a><br />
         
     </body>
 </html>
