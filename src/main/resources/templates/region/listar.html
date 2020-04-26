@@ -7,7 +7,7 @@
         <script th:href="@{/js/bootstrap.min.js}"></script>
     </head>
     <body class="container">
-        <div th:insert="fragments/fragmento.html :: barraSuperior"></div>
+        <div th:replace="fragments/fragmento.html :: barraSuperior(actual='region')"></div>
 
         <h2>Lista de Regiones</h2>
         <a class="btn btn-primary mt-4 mb-4" th:href="@{'/regions/create'}">Nueva Región</a>
