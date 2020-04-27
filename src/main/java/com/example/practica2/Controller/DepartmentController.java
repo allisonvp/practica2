@@ -76,7 +76,7 @@ public class DepartmentController {
     @PostMapping(value = "buscarDepartamento")
     public String buscarTransportista(@RequestParam("searchField") String searchField,
                                       Model model){
-        List<Department> listaDepartments = departmentRepository.buscarPorDepartmentname(searchField);
+        List<Department> listaDepartments = departmentRepository.findByDepartmentname(searchField);
         model.addAttribute("lista", listaDepartments);
         model.addAttribute("searchField",searchField);
         return "department/lista";
