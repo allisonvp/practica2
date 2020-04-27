@@ -40,7 +40,7 @@ public class DepartmentController {
         if(department.getDepartmentid()==0){
             List<Department> list = departmentRepository.findAll(Sort.by("departmentid").descending());
             Department ultimoDepartment = list.get(0);
-            department.setDepartmentid(ultimoDepartment.getDepartmentid() + 1);
+            department.setDepartmentid(ultimoDepartment.getDepartmentid() + 10);
             attr.addFlashAttribute("msg","Departamento creado exitosamente");
         }else{
             attr.addFlashAttribute("msg","Departamento " + department.getDepartmentname() + " actualizado exitosamente");
