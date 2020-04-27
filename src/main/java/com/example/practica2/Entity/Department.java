@@ -17,6 +17,16 @@ public class Department {
     private String departmentname;
     @Column(name = "manager_id")
     private String managerid;
+    @Column(name="department_short_name")
+    private String departmentshortname;
+
+    public String getDepartmentshortname() {
+        return departmentshortname;
+    }
+
+    public void setDepartmentshortname(String departmentshortname) {
+        this.departmentshortname = departmentshortname;
+    }
 
     public int getDepartmentid() {
         return departmentid;
