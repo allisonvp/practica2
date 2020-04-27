@@ -6,6 +6,9 @@
         <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
     </head>
     <body class="container">
+
+        <div th:replace="fragments/fragmento.html :: barraSuperior(actual='department')"></div>
+
         <h2>Lista Departamentos</h2>
 
         <a th:href="@{/department/nuevo}" class="btn btn-primary mt-4 mb-4" >Crear nuevo departamento</a>
