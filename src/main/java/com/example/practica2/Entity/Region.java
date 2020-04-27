@@ -9,8 +9,8 @@ public class Region {
     @Id
     @Column(name="region_id")
     private int regionid;
-
-    private String region_name;
+    @Column(name = "region_name")
+    private String regionname;
 
 
     public int getRegionid() {
@@ -21,11 +21,11 @@ public class Region {
         this.regionid = region_id;
     }
 
-    public String getRegion_name() {
-        return region_name;
+    public String getRegionname() {
+        return regionname;
     }
 
-    public void setRegion_name(String region_name) {
-        this.region_name = region_name;
+    public void setRegionname(String region_name) {
+        this.regionname = region_name;
     }
 }

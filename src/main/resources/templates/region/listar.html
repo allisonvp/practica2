@@ -13,6 +13,10 @@
         <a class="btn btn-primary mt-4 mb-4" th:href="@{'/regions/create'}">Nueva Región</a>
         <div th:if="${msg != null}" th:text="${msg}" class="alert alert-success" role="alert"></div>
 
+        <form method="post" th:action="@{/regions/buscarRegion}">
+            <input name="searchField" class="form-control mb-3" type="text" placeholder="Buscar"/>
+        </form>
+
         <table class="table table-sm">
             <tr>
                 <th>#</th>
@@ -21,8 +25,8 @@
                 <th></th>
             </tr>
             <tr th:each="region, i:${lista}">
-                <td th:text="${i.index +1}"></td>
-                <td th:text="${region.region_name}"></td>
+                <td th:text="${i.index + 1}"></td>
+                <td th:text="${region.regionname}"></td>
                 <td><a class="btn btn-primary" th:href="@{'/regions/edit?id=' + ${region.regionid}}">Editar</a></td>
                 <td><a class="btn btn-danger" th:href="@{'/regions/delete?id=' + ${region.regionid}}">Borrar</a></td>
             </tr>
