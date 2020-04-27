@@ -12,15 +12,15 @@
         <h2>Editar País</h2><hr />
 
         <form method="post" th:action="@{'/countries/save'}">
-            <input th:value="${pais.countryid}" name="regionid" type="hidden" >
+            <input th:value="${pais.countryid}" name="countryid" type="hidden" >
             <div class="form-group">
                 <label for="country_name">Nombre del país</label>
-                <input name="country_name" type="text" class="form-control" id="country_name">
+                <input th:value="${pais.country_name}" name="country_name" type="text" class="form-control" id="country_name">
             </div>
             <div class="form-group">
                 <label for="region">Nombre de la región</label>
                 <select class="form-control" name="region" id="region">
-                    <option th:each="region : ${listaR}" th:value="regionid" th:text="region.region_name"
+                    <option th:each="region : ${listaR}" th:value="${region.regionid}" th:text="${region.region_name}"
                             th:selected="${pais.region.regionid == region.regionid}"></option>
                 </select>
             </div>

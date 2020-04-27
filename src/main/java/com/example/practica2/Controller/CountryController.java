@@ -40,6 +40,7 @@ public class CountryController {
 
     @PostMapping("/save")
     public String guardarPais(Country country) {
+
         countryRepository.save(country);
         return "redirect:/countries/list";
     }
