@@ -1,27 +1,32 @@
 package com.example.practica2.Entity;
 
-import com.sun.istack.Nullable;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name= "employees")
 public class Employee {
     @Id
-    private String employee_id;
+    @Column(name="employee_id")
+    private String employeeid;
     private String first_name;
     @Column(nullable = false)
     private String last_name;
     @Column(nullable = false)
     private String email;
     private String phone_number;
-    @Column(nullable = false)
-    private LocalDateTime hire_date;
+
+    //@Column(nullable = false)
+   // @DateTimeFormat(pattern = "dd-MM-yyyy")
+   // private LocalDate hire_date;
+
     @Column(nullable = false)
     private String job_id;
     private BigDecimal salary;
@@ -30,12 +35,12 @@ public class Employee {
     @Column(nullable = false)
     private int department_id;
 
-    public String getEmployee_id() {
-        return employee_id;
+    public String getEmployeeid() {
+        return employeeid;
     }
 
-    public void setEmployee_id(String employee_id) {
-        this.employee_id = employee_id;
+    public void setEmployeeid(String employee_id) {
+        this.employeeid = employee_id;
     }
 
     public String getFirst_name() {
@@ -70,13 +75,13 @@ public class Employee {
         this.phone_number = phone_number;
     }
 
-    public LocalDateTime getHire_date() {
-        return hire_date;
-    }
+  //  public LocalDate getHire_date() {
+   //     return hire_date;
+   // }
 
-    public void setHire_date(LocalDateTime hire_date) {
-        this.hire_date = hire_date;
-    }
+  //  public void setHire_date(LocalDate hire_date) {
+   //     this.hire_date = hire_date;
+    //}
 
     public String getJob_id() {
         return job_id;
