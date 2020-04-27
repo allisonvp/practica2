@@ -11,6 +11,7 @@
 
         <h2>Lista de Regiones</h2>
         <a class="btn btn-primary mt-4 mb-4" th:href="@{'/regions/create'}">Nueva Región</a>
+        <div th:if="${msg != null}" th:text="${msg}" class="alert alert-success" role="alert"></div>
 
         <table class="table table-sm">
             <tr>

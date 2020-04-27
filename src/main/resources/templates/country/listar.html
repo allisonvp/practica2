@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Listar Países</title>
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+        <script th:href="@{/js/bootstrap.min.js}"></script>
+    </head>
+    <body class="container">
+        <div th:replace="fragments/fragmento.html :: barraSuperior(actual='country')"></div>
+
+        <h2>Lista de Países</h2>
+        <a class="btn btn-primary mt-4 mb-4" th:href="@{'/countries/create'}">Nueva Región</a>
+
+        <table class="table table-sm">
+            <tr>
+                <th>#</th>
+                <th>Nombre del país</th>
+                <th>Nombre de la región</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr th:each="pais, i:${lista}">
+                <td th:text="${i.index +1}"></td>
+                <td th:text="${pais.country_name}"></td>
+                <td th:text="${pais.region.region_name}"></td>
+                <td><a class="btn btn-primary" th:href="@{'/countries/edit?id=' + ${pais.countryid}}">Editar</a></td>
+                <td><a class="btn btn-danger" th:href="@{'/countries/delete?id=' + ${pais.countryid}}">Borrar</a></td>
+            </tr>
+        </table>
+        
+    </body>
+</html>

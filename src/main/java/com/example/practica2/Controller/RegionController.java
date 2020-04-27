@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,14 +35,17 @@ public class RegionController {
     }
 
     @PostMapping("/save")
-    public String guardarRegion(Region region) {
+    public String guardarRegion(Region region,
+                                RedirectAttributes attr) {
         if (region.getRegionid()==0){
             List<Region> listaRegion = regionRepository.findAll(Sort.by("regionid").descending());
             Region region_mayorId = listaRegion.get(0);
             int mayorId = region_mayorId.getRegionid();
             region.setRegionid(mayorId + 1);
+            attr.addFlashAttribute("msg", "Región creada exitosamente");
+        } else {
+            attr.addFlashAttribute("msg", "Región " + region.getRegion_name() + " actualizada exitosamente");
         }
-
         regionRepository.save(region);
         return "redirect:/regions/list";
     }
@@ -60,10 +64,12 @@ public class RegionController {
     }
 
     @GetMapping("/delete")
-    public String eliminarRegion(@RequestParam("id") int id) {
+    public String eliminarRegion(@RequestParam("id") int id,
+                                 RedirectAttributes attr) {
         Optional<Region> opt = regionRepository.findById(id);
         if (opt.isPresent()) {
             regionRepository.deleteById(id);
+            attr.addFlashAttribute("msg", "Región eliminada exitosamente");
         }
         return "redirect:/regions/list";
     }

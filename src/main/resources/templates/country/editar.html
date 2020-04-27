@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Editar País</title>
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+        <script th:href="@{/js/bootstrap.min.js}"></script>
+    </head>
+    <body class="container">
+        <div th:replace="fragments/fragmento.html :: barraSuperior(actual='country')"></div>
+
+        <h2>Editar País</h2><hr />
+
+        <form method="post" th:action="@{'/countries/save'}">
+            <input th:value="${pais.countryid}" name="regionid" type="hidden" >
+            <div class="form-group">
+                <label for="country_name">Nombre del país</label>
+                <input name="country_name" type="text" class="form-control" id="country_name">
+            </div>
+            <div class="form-group">
+                <label for="region">Nombre de la región</label>
+                <select class="form-control" name="region" id="region">
+                    <option th:each="region : ${listaR}" th:value="regionid" th:text="region.region_name"
+                            th:selected="${pais.region.regionid == region.regionid}"></option>
+                </select>
+            </div>
+
+            <a th:href="@{'/countries/list'}" class="btn btn-danger">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Actualizar</button>
+        </form>
+        
+    </body>
+</html>
