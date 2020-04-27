@@ -14,8 +14,8 @@
         <form method="post" th:action="@{'/regions/save'}">
             <input th:value="${region.regionid}" name="regionid" type="hidden" >
             <div class="form-group">
-                <label for="region_name">Nombre de la región</label>
-                <input th:value="${region.region_name}" name="region_name" type="text" class="form-control" id="region_name">
+                <label for="regionname">Nombre de la región</label>
+                <input th:value="${region.regionname}" name="regionname" type="text" class="form-control" id="regionname">
             </div>
 
             <a th:href="@{'/regions/list'}" class="btn btn-danger">Cancelar</a>

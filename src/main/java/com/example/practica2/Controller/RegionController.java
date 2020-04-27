@@ -44,7 +44,7 @@ public class RegionController {
             region.setRegionid(mayorId + 1);
             attr.addFlashAttribute("msg", "Región creada exitosamente");
         } else {
-            attr.addFlashAttribute("msg", "Región " + region.getRegion_name() + " actualizada exitosamente");
+            attr.addFlashAttribute("msg", "Región " + region.getRegionname() + " actualizada exitosamente");
         }
         regionRepository.save(region);
         return "redirect:/regions/list";
@@ -72,5 +72,13 @@ public class RegionController {
             attr.addFlashAttribute("msg", "Región eliminada exitosamente");
         }
         return "redirect:/regions/list";
+    }
+
+    @PostMapping("/buscarRegion")
+    public String buscarPorNombreRegion(@RequestParam("searchField") String sf,
+                                        Model model) {
+        List<Region> listaRegi = regionRepository.findByRegionname(sf);
+        model.addAttribute("lista", listaRegi);
+        return "region/listar";
     }
 }

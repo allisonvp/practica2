@@ -20,7 +20,7 @@
             <div class="form-group">
                 <label for="region">Nombre de la región</label>
                 <select class="form-control" name="region" id="region">
-                    <option th:each="region : ${listaR}" th:value="${region.regionid}" th:text="${region.region_name}"
+                    <option th:each="region : ${listaR}" th:value="${region.regionid}" th:text="${region.regionname}"
                             th:selected="${pais.region.regionid == region.regionid}"></option>
                 </select>
             </div>
