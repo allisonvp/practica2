@@ -11,32 +11,34 @@ import javax.persistence.Table;
 public class Department {
 
     @Id
-    private int department_id;
-    @Column(nullable = false)
-    private String department_name;
-    private String manager_id;
+    @Column(name = "department_id")
+    private int departmentid;
+    @Column(nullable = false, name = "department_name")
+    private String departmentname;
+    @Column(name = "manager_id")
+    private String managerid;
 
-    public int getDepartment_id() {
-        return department_id;
+    public int getDepartmentid() {
+        return departmentid;
     }
 
-    public void setDepartment_id(int department_id) {
-        this.department_id = department_id;
+    public void setDepartmentid(int department_id) {
+        this.departmentid = department_id;
     }
 
-    public String getDepartment_name() {
-        return department_name;
+    public String getDepartmentname() {
+        return departmentname;
     }
 
-    public void setDepartment_name(String department_name) {
-        this.department_name = department_name;
+    public void setDepartmentname(String department_name) {
+        this.departmentname = department_name;
     }
 
-    public String getManager_id() {
-        return manager_id;
+    public String getManagerid() {
+        return managerid;
     }
 
-    public void setManager_id(String manager_id) {
-        this.manager_id = manager_id;
+    public void setManagerid(String manager_id) {
+        this.managerid = manager_id;
     }
 }
