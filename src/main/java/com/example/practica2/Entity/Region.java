@@ -10,5 +10,4 @@ public class Region {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int regionid;
     private String region_name;
-
 }
