@@ -10,19 +10,20 @@
         <div th:replace="fragments/fragmento.html :: barraSuperior(actual='department')"></div>
 
         <h2>Editar Departamento</h2><hr/>
-        <form method="post" th:action="@{/department/editar}">
+        <form method="post" th:action="@{/department/guardar}">
+
+            <input type="hidden" name="departmentid" th:value="${departmentEditar.departmentid}">
+
             <div class="form-group">
                 <label for="departmentname">Nombre del departamento</label>
                 <input name="departmentname" type="text" class="form-control" id="departmentname"
                        th:value="${departmentEditar.getDepartmentname()}"
-                       th:text="${departmentEditar.getDepartmentname()}"
                 >
             </div>
             <div class="form-group">
                 <label for="managerid">Manager</label>
                 <input name="managerid" type="text" class="form-control" id="managerid"
                        th:value="${departmentEditar.getManagerid()}"
-                       th:text="${departmentEditar.getManagerid()}"
                 >
             </div>
             <a th:href="@{/department/listar}" class="btn btn-danger">Cancelar</a>

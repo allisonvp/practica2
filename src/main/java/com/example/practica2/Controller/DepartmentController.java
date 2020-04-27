@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping(name="/department")
+@RequestMapping(value="/department")
 public class DepartmentController {
 
     @Autowired
