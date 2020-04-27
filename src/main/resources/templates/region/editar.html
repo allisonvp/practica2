@@ -7,7 +7,8 @@
         <script th:href="@{/js/bootstrap.min.js}"></script>
     </head>
     <body class="container">
-        <div th:insert="fragments/fragmento.html :: barraSuperior"></div>
+        <div th:replace="fragments/fragmento.html :: barraSuperior(actual='region')"></div>
+
         <h2>Editar Región</h2><hr />
 
         <form method="post" th:action="@{'/regions/save'}">
@@ -18,7 +19,7 @@
             </div>
 
             <a th:href="@{'/regions/list'}" class="btn btn-danger">Cancelar</a>
-            <button type="submit" class="btn btn-primary">Registrar</button>
+            <button type="submit" class="btn btn-primary">Actualizar</button>
         </form>
         
     </body>

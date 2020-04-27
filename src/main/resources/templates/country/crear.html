@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Nuevo País</title>
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+        <script th:href="@{/js/bootstrap.min.js}"></script>
+    </head>
+    <body class="container">
+        <div th:replace="fragments/fragmento.html :: barraSuperior(actual='country')"></div>
+
+        <h2>Nuevo País</h2><hr />
+
+        <form method="post" th:action="@{'/countries/save'}">
+            <div class="form-group">
+                <label for="countryid">Id del país</label>
+                <input name="countryid" type="text" class="form-control" id="countryid">
+            </div>
+            <div class="form-group">
+                <label for="country_name">Nombre del país</label>
+                <input name="country_name" type="text" class="form-control" id="country_name">
+            </div>
+            <div class="form-group">
+                <label for="region">Nombre de la región</label>
+                <select class="form-control" name="region" id="region">
+                    <option th:each="region : ${listaR}" th:value="${region.regionid}" th:text="${region.region_name}"></option>
+                </select>
+            </div>
+
+            <a th:href="@{'/countries/list'}" class="btn btn-danger">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Registrar</button>
+        </form>
+        
+    </body>
+</html>
