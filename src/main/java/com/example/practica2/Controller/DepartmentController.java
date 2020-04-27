@@ -26,7 +26,7 @@ public class DepartmentController {
     public String listaDepartments(Model model){
 
         List<Department> listaDepartments = departmentRepository.findAll();
-        model.addAttribute("listaDepartments", listaDepartments);
+        model.addAttribute("lista", listaDepartments);
         return "department/lista";
     }
 
@@ -76,8 +76,8 @@ public class DepartmentController {
     @PostMapping(value = "buscarDepartamento")
     public String buscarTransportista(@RequestParam("searchField") String searchField,
                                       Model model){
-        List<Department> listaDepartments = departmentRepository.findByDepartmentName(searchField);
-        model.addAttribute("listaDepartments", listaDepartments);
+        List<Department> listaDepartments = departmentRepository.buscarPorDepartmentname(searchField);
+        model.addAttribute("lista", listaDepartments);
         model.addAttribute("searchField",searchField);
         return "department/lista";
     }
