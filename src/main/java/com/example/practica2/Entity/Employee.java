@@ -23,9 +23,8 @@ public class Employee {
     private String email;
     private String phone_number;
 
-    //@Column(nullable = false)
-   // @DateTimeFormat(pattern = "dd-MM-yyyy")
-   // private LocalDate hire_date;
+    @Column(nullable = false)
+    private LocalDate hire_date;
 
     @Column(nullable = false)
     private String job_id;
@@ -75,13 +74,13 @@ public class Employee {
         this.phone_number = phone_number;
     }
 
-  //  public LocalDate getHire_date() {
-   //     return hire_date;
-   // }
+    public LocalDate getHire_date() {
+        return hire_date;
+    }
 
-  //  public void setHire_date(LocalDate hire_date) {
-   //     this.hire_date = hire_date;
-    //}
+    public void setHire_date(LocalDate hire_date) {
+        this.hire_date = hire_date;
+    }
 
     public String getJob_id() {
         return job_id;

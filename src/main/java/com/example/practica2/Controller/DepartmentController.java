@@ -32,6 +32,8 @@ public class DepartmentController {
 
     @GetMapping(value = "/nuevo")
     public String nuevoDepartment(){
+
+
         return "department/crear";
     }
 
