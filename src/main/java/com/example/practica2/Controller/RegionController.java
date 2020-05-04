@@ -1,15 +1,14 @@
 package com.example.practica2.Controller;
 
+import com.example.practica2.Dto.PromedioSalarioEmpleadosPorRegionDto;
 import com.example.practica2.Entity.Region;
+import com.example.practica2.Repository.EmployeeRepository;
 import com.example.practica2.Repository.RegionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -21,6 +20,8 @@ public class RegionController {
 
     @Autowired
     RegionRepository regionRepository;
+    @Autowired
+    EmployeeRepository employeeRepository;
 
     @GetMapping("/list")
     public String listarRegiones(Model model) {
@@ -80,5 +81,22 @@ public class RegionController {
         List<Region> listaRegi = regionRepository.findByRegionname(sf);
         model.addAttribute("lista", listaRegi);
         return "region/listar";
+    }
+
+    @GetMapping("/promedio/{region}")
+    public String promedioSalario(Model model,
+                                  @PathVariable("region") String region,
+                                  RedirectAttributes attr){
+        List<PromedioSalarioEmpleadosPorRegionDto> lista = employeeRepository.salarioPromedio(region);
+
+        if (!lista.isEmpty()) {
+            PromedioSalarioEmpleadosPorRegionDto prom = lista.get(0);
+            model.addAttribute("salarioprom", prom );
+        } else {
+            attr.addFlashAttribute("msg2", "No hay reporte para regiones sin empleados");
+            return "redirect:/regions/list";
+        }
+
+        return "region/promediosalario";
     }
 }
