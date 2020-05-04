@@ -12,6 +12,7 @@
         <h2>Lista de Empleados</h2>
         <a class="btn btn-primary mt-4 mb-4" th:href="@{'/employee/create'}">Nuevo Empleado</a>
         <div th:if="${msg != null}" th:text="${msg}" class="alert alert-success" role="alert"></div>
+        <div th:if="${msg2 != null}" th:text="${msg2}" class="alert alert-danger" role="alert"></div>
 
         <table class="table table-sm">
             <tr>

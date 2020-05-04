@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Optional;
@@ -76,7 +77,8 @@ public class EmployeeController {
 
     @GetMapping("/edit")
     public String editarEmp(@RequestParam("id") String id,
-                               Model model){
+                            Model model,
+                            RedirectAttributes attr){
         Optional<Employee> opt = employeeRepository.findById(id);
         if (opt.isPresent()) {
             Employee employee =opt.get();
@@ -88,7 +90,14 @@ public class EmployeeController {
             model.addAttribute("listaDep", listaDep);
             model.addAttribute("listaMan", listaMan);
             model.addAttribute("employee", employee);
-            return "employee/editar";
+
+            if(employee.getManager_id()!=null) {
+                return "employee/editar";
+            } else {
+                attr.addFlashAttribute("msg2","No se puede editar un empleado sin Jefe");
+                return "redirect:/employee/list";
+            }
+
         } else {
             return "redirect:/employee/list";
         }
