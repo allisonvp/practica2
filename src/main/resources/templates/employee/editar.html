@@ -33,7 +33,7 @@
             <div class="form-group">
                 <label for="job_id">Trabajo</label>
                 <select class="form-control" name="job_id" id="job_id">
-                    <option th:each="job : ${listaJob}" th:selected="${employee.job_id == job.job_id}" th:value="${job.job_id}" th:text="${job.job_title}"></option>
+                    <option th:each="job : ${listaJob}" th:selected="${employee.job.job_id == job.job_id}" th:value="${job.job_id}" th:text="${job.job_title}"></option>
                 </select>
             </div>
             <div class="form-group">
@@ -47,14 +47,14 @@
             <div class="form-group">
                 <label for="manager_id">Jefe</label>
                 <select class="form-control" name="manager_id" id="manager_id">
-                    <option th:selected="${employee.manager_id == null}" value="0" >-----------Sin Jefe--------------</option>
-                    <option th:each="man : ${listaMan}"  th:selected="${employee.manager_id == man.employeeid}" th:value="${man.employeeid}" th:text="${man.first_name}+' ' +${man.last_name}"></option>
+                    <option th:selected="${employee.manager == null}" value="0" >-----------Sin Jefe--------------</option>
+                    <option th:each="man : ${listaMan}"  th:selected="${employee.manager.employeeid == man.employeeid}" th:value="${man.employeeid}" th:text="${man.first_name}+' ' +${man.last_name}"></option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="department_id">Departamento</label>
                 <select class="form-control" name="department_id" id="department_id">
-                    <option th:each="dep : ${listaDep}"  th:selected="${employee.department_id == dep.departmentid}" th:value="${dep.departmentid}" th:text="${dep.departmentname}"></option>
+                    <option th:each="dep : ${listaDep}"  th:selected="${employee.department.departmentid == dep.departmentid}" th:value="${dep.departmentid}" th:text="${dep.departmentname}"></option>
                 </select>
             </div>
             <a th:href="@{'/employee/list'}" class="btn btn-danger">Cancelar</a>

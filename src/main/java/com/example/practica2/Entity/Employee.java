@@ -2,10 +2,7 @@ package com.example.practica2.Entity;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -26,13 +23,21 @@ public class Employee {
     @Column(nullable = false)
     private LocalDate hire_date;
 
-    @Column(nullable = false)
-    private String job_id;
+
+    @ManyToOne
+    @JoinColumn(name = "job_id")
+    private Job job;
     private BigDecimal salary;
     private BigDecimal commission_pct;
-    private String manager_id;
-    @Column(nullable = false)
-    private int department_id;
+
+    @ManyToOne
+    @JoinColumn(name = "manager_id")
+    private Employee manager;
+
+
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    private Department department;
 
     public String getEmployeeid() {
         return employeeid;
@@ -82,12 +87,12 @@ public class Employee {
         this.hire_date = hire_date;
     }
 
-    public String getJob_id() {
-        return job_id;
+    public Job getJob() {
+        return job;
     }
 
-    public void setJob_id(String job_id) {
-        this.job_id = job_id;
+    public void setJob(Job job) {
+        this.job = job;
     }
 
     public BigDecimal getSalary() {
@@ -106,19 +111,19 @@ public class Employee {
         this.commission_pct = commission_pct;
     }
 
-    public String getManager_id() {
-        return manager_id;
+    public Employee getManager() {
+        return manager;
     }
 
-    public void setManager_id(String manager_id) {
-        this.manager_id = manager_id;
+    public void setManager(Employee manager) {
+        this.manager = manager;
     }
 
-    public int getDepartment_id() {
-        return department_id;
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setDepartment_id(int department_id) {
-        this.department_id = department_id;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 }

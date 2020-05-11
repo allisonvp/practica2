@@ -37,11 +37,11 @@
                 <td th:text="${emp.email}"></td>
                 <td th:text="${emp.phone_number}"></td>
                
-                <td th:text="${emp.job_id}"></td>
+                <td th:text="${emp.job.job_title}"></td>
                 <td th:text="${emp.salary}"></td>
                 <td th:text="${emp.commission_pct==null}? 'Sin comisión' : ${emp.commission_pct}"></td>
-                <td th:text="${emp.manager_id==null}? 'Sin jefe' : ${emp.manager_id}"></td>
-                <td th:text="${emp.department_id}"></td>
+                <td th:text="${emp.manager==null}? 'Sin jefe' : ${emp.manager.first_name} + ' ' + ${emp.manager.last_name}"></td>
+                <td th:text="${emp.department.departmentname}"></td>
                 <td><a class="btn btn-primary" th:href="@{'/employee/edit?id=' + ${emp.employeeid}}">Editar</a></td>
                 <td><a class="btn btn-danger" th:href="@{'/employee/delete?id=' + ${emp.employeeid}}">Borrar</a></td>
             </tr>

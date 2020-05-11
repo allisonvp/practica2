@@ -60,8 +60,8 @@ public class EmployeeController {
             int mayoridNum = Integer.valueOf(idSplit[0]);
             String idNumstr=String.valueOf(mayoridNum+1);
 
-            Optional<Department> optdepartment= departmentRepository.findById(emp.getDepartment_id());
-            Department dep=optdepartment.get();
+
+            Department dep=emp.getDepartment();
             String dSN=dep.getDepartmentshortname();
 
             String idFinal= idNumstr +"_" +dSN;
@@ -88,7 +88,7 @@ public class EmployeeController {
             model.addAttribute("listaMan", listaMan);
             model.addAttribute("employee", employee);
 
-            if(employee.getManager_id()!=null) {
+            if(employee.getManager()!=null) {
                 return "employee/editar";
             } else {
                 attr.addFlashAttribute("msg2","No se puede editar un empleado sin Jefe");
