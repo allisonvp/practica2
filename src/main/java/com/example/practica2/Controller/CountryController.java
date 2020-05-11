@@ -7,11 +7,11 @@ import com.example.practica2.Repository.RegionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,25 +32,35 @@ public class CountryController {
     }
 
     @GetMapping("/create")
-    public  String crearPais(Model model) {
+    public  String crearPais(@ModelAttribute("pais") Country country,
+                             Model model) {
         List<Region> listaRegion = regionRepository.findAll();
         model.addAttribute("listaR", listaRegion);
         return "country/crear";
     }
 
     @PostMapping("/save")
-    public String guardarPais(Country country) {
-
-        countryRepository.save(country);
-        return "redirect:/countries/list";
+    public String guardarPais(@ModelAttribute("pais") @Valid Country country,
+                              BindingResult bindingResult,
+                              Model model,
+                              RedirectAttributes attr) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("listaR", regionRepository.findAll());
+            return "country/crear";
+        } else {
+            attr.addFlashAttribute("msg", "País exitosamente " + (country.getCountryid()==null?"creado":"actualizado"));
+            countryRepository.save(country);
+            return "redirect:/countries/list";
+        }
     }
 
     @GetMapping("/edit")
-    public String editarPais(@RequestParam("id") String id,
+    public String editarPais(@ModelAttribute("pais") Country country,
+                             @RequestParam("id") String id,
                              Model model) {
         Optional<Country> opt = countryRepository.findById(id);
         if(opt.isPresent()) {
-            Country country = opt.get();
+            country = opt.get();
             model.addAttribute("listaR", regionRepository.findAll());
             model.addAttribute("pais", country);
             return "country/editar";
@@ -60,10 +70,12 @@ public class CountryController {
     }
 
     @GetMapping("/delete")
-    public String borrarPais(@RequestParam("id") String id) {
+    public String borrarPais(@RequestParam("id") String id,
+                             RedirectAttributes attr) {
         Optional<Country> opt = countryRepository.findById(id);
         if(opt.isPresent()){
             countryRepository.deleteById(id);
+            attr.addFlashAttribute("msg", "País exitosamente eliminado");
         }
         return "redirect:/countries/list";
     }

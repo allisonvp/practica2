@@ -9,16 +9,18 @@
     <body class="container">
         <div th:replace="fragments/fragmento.html :: barraSuperior(actual='region')"></div>
 
-        <h2>Nueva Región</h2><hr />
+        <h2 th:text="${region.regionname==null?'Nueva Región':'Editar Región'}"></h2><hr />
 
-        <form method="post" th:action="@{'/regions/save'}">
+        <form method="post" th:object="${region}" th:action="@{'/regions/save'}">
             <div class="form-group">
                 <label for="regionname">Nombre de la región</label>
-                <input name="regionname" type="text" class="form-control" id="regionname">
+                <input  type="text" class="form-control" th:field="*{regionname}">
+                <div class="text-danger" th:if="${#fields.hasErrors('regionname')}"
+                     th:errors="*{regionname}"></div>
             </div>
 
             <a th:href="@{'/regions/list'}" class="btn btn-danger">Cancelar</a>
-            <button type="submit" class="btn btn-primary">Registrar</button>
+            <button type="submit" class="btn btn-primary" th:text="${region.regionname==null?'Registrar':'Actualizar'}"></button>
         </form>
 
     </body>

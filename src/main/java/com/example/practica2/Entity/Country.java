@@ -1,6 +1,7 @@
 package com.example.practica2.Entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "countries")
@@ -9,7 +10,9 @@ public class Country {
     @Id
     @Column(name = "country_id")
     private String countryid;
-    private String country_name;
+    @Size(max=40, message = "El nombre no puede tener más de 40 caracteres")
+    @Column(name = "country_name")
+    private String countryname;
     @ManyToOne
     @JoinColumn(name = "region_id")
     private Region region;
@@ -22,12 +25,12 @@ public class Country {
         this.countryid = countryid;
     }
 
-    public String getCountry_name() {
-        return country_name;
+    public String getCountryname() {
+        return countryname;
     }
 
-    public void setCountry_name(String country_name) {
-        this.country_name = country_name;
+    public void setCountryname(String country_name) {
+        this.countryname = country_name;
     }
 
     public Region getRegion() {

@@ -9,26 +9,27 @@
     <body class="container">
         <div th:replace="fragments/fragmento.html :: barraSuperior(actual='country')"></div>
 
-        <h2>Nuevo País</h2><hr />
+        <h2 th:text="${pais.countryname==null?'Nuevo País':'Editar País'}"></h2><hr />
 
-        <form method="post" th:action="@{'/countries/save'}">
+        <form method="post" th:object="${pais}" th:action="@{'/countries/save'}">
             <div class="form-group">
                 <label for="countryid">Id del país</label>
                 <input name="countryid" type="text" class="form-control" id="countryid">
             </div>
             <div class="form-group">
-                <label for="country_name">Nombre del país</label>
-                <input name="country_name" type="text" class="form-control" id="country_name">
+                <label for="countryname">Nombre del país</label>
+                <input type="text" class="form-control" th:field="*{countryname}">
+                <div class="text-danger" th:if="${#fields.hasErrors('countryname')}" th:errors="*{countryname}"></div>
             </div>
             <div class="form-group">
                 <label for="region">Nombre de la región</label>
-                <select class="form-control" name="region" id="region">
+                <select class="form-control" th:field="*{region}">
                     <option th:each="region : ${listaR}" th:value="${region.regionid}" th:text="${region.regionname}"></option>
                 </select>
             </div>
 
             <a th:href="@{'/countries/list'}" class="btn btn-danger">Cancelar</a>
-            <button type="submit" class="btn btn-primary">Registrar</button>
+            <button type="submit" class="btn btn-primary" th:text="${pais.countryname==null?'Registrar':'Actualizar'}"></button>
         </form>
         
     </body>

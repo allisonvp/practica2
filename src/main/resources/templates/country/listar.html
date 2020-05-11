@@ -12,6 +12,8 @@
         <h2>Lista de Países</h2>
         <a class="btn btn-primary mt-4 mb-4" th:href="@{'/countries/create'}">Nuevo País</a>
 
+        <div th:if="${msg != null}" th:text="${msg}" class="alert alert-success" role="alert"></div>
+
         <table class="table table-sm">
             <tr>
                 <th>#</th>
@@ -22,7 +24,7 @@
             </tr>
             <tr th:each="pais, i:${lista}">
                 <td th:text="${i.index +1}"></td>
-                <td th:text="${pais.country_name}"></td>
+                <td th:text="${pais.countryname}"></td>
                 <td th:text="${pais.region.regionname}"></td>
                 <td><a class="btn btn-primary" th:href="@{'/countries/edit?id=' + ${pais.countryid}}">Editar</a></td>
                 <td><a class="btn btn-danger" th:href="@{'/countries/delete?id=' + ${pais.countryid}}">Borrar</a></td>

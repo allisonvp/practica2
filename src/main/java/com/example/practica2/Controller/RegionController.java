@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,34 +33,38 @@ public class RegionController {
     }
 
     @GetMapping("/create")
-    public String crearRegion() {
+    public String crearRegion(@ModelAttribute("region") Region region) {
         return "region/crear";
     }
 
     @PostMapping("/save")
-    public String guardarRegion(Region region,
+    public String guardarRegion(@ModelAttribute("region") @Valid Region region,
+                                BindingResult bindingResult,
                                 RedirectAttributes attr) {
-        if (region.getRegionid()==0){
+        if (bindingResult.hasErrors()) {
+            return "region/crear";
+        } else if (region.getRegionid() == 0) {
             List<Region> listaRegion = regionRepository.findAll(Sort.by("regionid").descending());
             Region region_mayorId = listaRegion.get(0);
             int mayorId = region_mayorId.getRegionid();
             region.setRegionid(mayorId + 1);
-            attr.addFlashAttribute("msg", "Región creada exitosamente");
-        } else {
-            attr.addFlashAttribute("msg", "Región " + region.getRegionname() + " actualizada exitosamente");
+            attr.addFlashAttribute("msg", "Región exitosamente " + (region.getRegionid() == 0?"creada":"actializada"));
+            regionRepository.save(region);
+
         }
-        regionRepository.save(region);
         return "redirect:/regions/list";
     }
 
+
     @GetMapping("/edit")
-    public String editarRegion(@RequestParam("id") int id,
-                               Model model){
+    public String editarRegion(@ModelAttribute("region") Region region,
+                               @RequestParam("id") int id,
+                               Model model) {
         Optional<Region> opt = regionRepository.findById(id);
         if (opt.isPresent()) {
-            Region region =opt.get();
+            region = opt.get();
             model.addAttribute("region", region);
-            return "/region/editar";
+            return "/region/crear";
         } else {
             return "redirect:/regions/list";
         }
@@ -86,12 +92,12 @@ public class RegionController {
     @GetMapping("/promedio/{region}")
     public String promedioSalario(Model model,
                                   @PathVariable("region") String region,
-                                  RedirectAttributes attr){
+                                  RedirectAttributes attr) {
         List<PromedioSalarioEmpleadosPorRegionDto> lista = employeeRepository.salarioPromedio(region);
 
         if (!lista.isEmpty()) {
             PromedioSalarioEmpleadosPorRegionDto prom = lista.get(0);
-            model.addAttribute("salarioprom", prom );
+            model.addAttribute("salarioprom", prom);
         } else {
             attr.addFlashAttribute("msg2", "No hay reporte para regiones sin empleados");
             return "redirect:/regions/list";
