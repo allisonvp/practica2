@@ -48,10 +48,12 @@ public class RegionController {
             Region region_mayorId = listaRegion.get(0);
             int mayorId = region_mayorId.getRegionid();
             region.setRegionid(mayorId + 1);
-            attr.addFlashAttribute("msg", "Región exitosamente " + (region.getRegionid() == 0?"creada":"actializada"));
-            regionRepository.save(region);
-
+            attr.addFlashAttribute("msg", "Región exitosamente creada");
+        }else{
+            attr.addFlashAttribute("msg", "Región exitosamente actualizada");
         }
+
+        regionRepository.save(region);
         return "redirect:/regions/list";
     }
 
@@ -63,7 +65,7 @@ public class RegionController {
         Optional<Region> opt = regionRepository.findById(id);
         if (opt.isPresent()) {
             region = opt.get();
-            model.addAttribute("region", region);
+            model.addAttribute("region",region);
             return "/region/crear";
         } else {
             return "redirect:/regions/list";
