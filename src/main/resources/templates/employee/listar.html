@@ -32,15 +32,15 @@
             </tr>
             <tr th:each="emp, i:${lista}">
                 <td th:text="${i.index +1}"></td>
-                <td th:text="${emp.first_name}"></td>
-                <td th:text="${emp.last_name}"></td>
+                <td th:text="${emp.firstname}"></td>
+                <td th:text="${emp.lastname}"></td>
                 <td th:text="${emp.email}"></td>
                 <td th:text="${emp.phone_number}"></td>
                
                 <td th:text="${emp.job.job_title}"></td>
                 <td th:text="${emp.salary}"></td>
                 <td th:text="${emp.commission_pct==null}? 'Sin comisión' : ${emp.commission_pct}"></td>
-                <td th:text="${emp.manager==null}? 'Sin jefe' : ${emp.manager.first_name} + ' ' + ${emp.manager.last_name}"></td>
+                <td th:text="${emp.manager==null}? 'Sin jefe' : ${emp.manager.firstname} + ' ' + ${emp.manager.lastname}"></td>
                 <td th:text="${emp.department.departmentname}"></td>
                 <td><a class="btn btn-primary" th:href="@{'/employee/edit?id=' + ${emp.employeeid}}">Editar</a></td>
                 <td><a class="btn btn-danger" th:href="@{'/employee/delete?id=' + ${emp.employeeid}}">Borrar</a></td>

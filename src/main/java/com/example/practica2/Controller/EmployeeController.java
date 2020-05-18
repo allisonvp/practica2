@@ -30,7 +30,7 @@ public class EmployeeController {
     @Autowired
     JobRepository jobRepository;
 
-    @GetMapping("/list")
+    @GetMapping(value = {"/list","/"})
     public String listarEmployees(Model model) {
         List<Employee> listaEmp = employeeRepository.findAll();
         model.addAttribute("lista", listaEmp);

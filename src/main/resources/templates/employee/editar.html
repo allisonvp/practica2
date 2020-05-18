@@ -15,11 +15,11 @@
         <form method="post" th:action="@{'/employee/save'}">
             <div class="form-group">
                 <label for="first_name">Nombre</label>
-                <input name="first_name" type="text" class="form-control" id="first_name" th:value="${employee.first_name}">
+                <input name="first_name" type="text" class="form-control" id="first_name" th:value="${employee.firstname}">
             </div>
             <div class="form-group">
                 <label for="last_name">Apellido</label>
-                <input name="last_name" type="text" class="form-control" id="last_name" th:value="${employee.last_name}">
+                <input name="last_name" type="text" class="form-control" id="last_name" th:value="${employee.lastname}">
             </div>
             <div class="form-group">
                 <label for="email">E-mail</label>
@@ -48,7 +48,7 @@
                 <label for="manager_id">Jefe</label>
                 <select class="form-control" name="manager_id" id="manager_id">
                     <option th:selected="${employee.manager == null}" value="0" >-----------Sin Jefe--------------</option>
-                    <option th:each="man : ${listaMan}"  th:selected="${employee.manager.employeeid == man.employeeid}" th:value="${man.employeeid}" th:text="${man.first_name}+' ' +${man.last_name}"></option>
+                    <option th:each="man : ${listaMan}"  th:selected="${employee.manager.employeeid == man.employeeid}" th:value="${man.employeeid}" th:text="${man.firstname}+' ' +${man.lastname}"></option>
                 </select>
             </div>
             <div class="form-group">

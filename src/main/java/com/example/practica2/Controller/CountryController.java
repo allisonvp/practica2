@@ -48,7 +48,7 @@ public class CountryController {
             model.addAttribute("listaR", regionRepository.findAll());
             return "country/crear";
         } else {
-            attr.addFlashAttribute("msg", "País exitosamente " + (country.getCountryid()==null?"creado":"actualizado"));
+            attr.addFlashAttribute("msg", "País exitosamente " + (country.getCountryname()==null?"creado":"actualizado"));
             countryRepository.save(country);
             return "redirect:/countries/list";
         }
@@ -63,7 +63,7 @@ public class CountryController {
             country = opt.get();
             model.addAttribute("listaR", regionRepository.findAll());
             model.addAttribute("pais", country);
-            return "country/editar";
+            return "country/crear";
         } else {
             return "redirect:/countries/list";
         }

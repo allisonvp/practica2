@@ -14,7 +14,7 @@
         <form method="post" th:object="${pais}" th:action="@{'/countries/save'}">
             <div class="form-group">
                 <label for="countryid">Id del país</label>
-                <input name="countryid" type="text" class="form-control" id="countryid">
+                <input  type="text" class="form-control" th:field="*{countryid}">
             </div>
             <div class="form-group">
                 <label for="countryname">Nombre del país</label>

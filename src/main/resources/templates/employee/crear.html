@@ -48,7 +48,7 @@
                 <label for="manager_id">Jefe</label>
                 <select class="form-control" name="manager_id" id="manager_id">
                     <option value="0">-----------Sin Jefe--------------</option>
-                    <option th:each="man : ${listaMan}" th:value="${man.employeeid}" th:text="${man.first_name}+' ' +${man.last_name}"></option>
+                    <option th:each="man : ${listaMan}" th:value="${man.employeeid}" th:text="${man.firstname}+' ' +${man.lastname}"></option>
                 </select>
             </div>
             <div class="form-group">
